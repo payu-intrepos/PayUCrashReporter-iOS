@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
                           }
   s.documentation_url   = "https://app.gitbook.com/@payumobile/s/sdk-integration/ios"
   s.platform            = :ios , "10.0"
-  s.vendored_frameworks = 'PayUCrashReporter.xcframework'
+  s.vendored_frameworks = "PayUCrashReporter.xcframework"
 
 
 
