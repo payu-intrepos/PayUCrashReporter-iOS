@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "PayUIndia-CrashReporter",
+    platforms: [.iOS(.v11)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -12,6 +13,6 @@ let package = Package(
             targets: ["PayUCrashReporter"]),
     ],
     targets: [
-            .binaryTarget(name: "PayUCrashReporter", path: "./PayUCrashReporter.xcframework")
-        ]
+        .binaryTarget(name: "PayUCrashReporter", path: "./PayUCrashReporter.xcframework")
+    ]
 )
