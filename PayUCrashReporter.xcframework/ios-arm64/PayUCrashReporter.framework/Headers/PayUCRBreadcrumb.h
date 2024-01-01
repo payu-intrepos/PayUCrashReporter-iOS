@@ -1,17 +1,16 @@
 #import <Foundation/Foundation.h>
 
-#import "PayuCrashReporterDefines.h"
-#import "PayuCrashReporterSerializable.h"
+#import "PayUCRDefines.h"
+#import "PayUCRSerializable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(Breadcrumb)
-@interface PayuCrashReporterBreadcrumb : NSObject <PayuCrashReporterSerializable>
+@interface PayUCRBreadcrumb : NSObject <PayUCRSerializable>
 
 /**
  * Level of breadcrumb
  */
-@property (nonatomic) PayUCrashReporterLevel level;
+@property (nonatomic) PayUCRLevel level;
 
 /**
  * Category of bookmark, can be any string
@@ -40,13 +39,13 @@ NS_SWIFT_NAME(Breadcrumb)
 @property (nonatomic, strong) NSDictionary<NSString *, id> *_Nullable data;
 
 /**
- * Initializer for PayuCrashReporterBreadcrumb
+ * Initializer for PayUCRBreadcrumb
  *
- * @param level PayUCrashReporterLevel
+ * @param level PayUCRLevel
  * @param category String
- * @return PayuCrashReporterBreadcrumb
+ * @return PayUCRBreadcrumb
  */
-- (instancetype)initWithLevel:(PayUCrashReporterLevel)level category:(NSString *)category;
+- (instancetype)initWithLevel:(PayUCRLevel)level category:(NSString *)category;
 - (instancetype)init;
 + (instancetype)new NS_UNAVAILABLE;
 
@@ -54,7 +53,7 @@ NS_SWIFT_NAME(Breadcrumb)
 
 - (BOOL)isEqual:(id _Nullable)other;
 
-- (BOOL)isEqualToBreadcrumb:(PayuCrashReporterBreadcrumb *)breadcrumb;
+- (BOOL)isEqualToBreadcrumb:(PayUCRBreadcrumb *)breadcrumb;
 
 - (NSUInteger)hash;
 

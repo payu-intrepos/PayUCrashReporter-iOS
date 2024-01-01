@@ -22,36 +22,36 @@
     -(instancetype)init NS_UNAVAILABLE;                                                            \
     +(instancetype) new NS_UNAVAILABLE;
 
-@class PayuCrashReporterEvent, PayuCrashReporterBreadcrumb;
+@class PayUCREvent, PayUCRBreadcrumb;
 
 /**
  * Block used for returning after a request finished
  */
-typedef void (^PayUCrashReporterRequestFinished)(NSError *_Nullable error);
+typedef void (^PayUCRRequestFinished)(NSError *_Nullable error);
 
 /**
  * Block used for request operation finished, shouldDiscardEvent is YES if event
  * should be deleted regardless if an error ocured or not
  */
-typedef void (^PayUCrashReporterRequestOperationFinished)(
+typedef void (^PayUCRRequestOperationFinished)(
     NSHTTPURLResponse *_Nullable response, NSError *_Nullable error);
 /**
  * Block can be used to mutate a breadcrumb before it's added to the scope.
  * To avoid adding the breadcrumb altogether, return nil instead.
  */
-typedef PayuCrashReporterBreadcrumb *_Nullable (^PayUCrashReporterBeforeBreadcrumbCallback)(
-    PayuCrashReporterBreadcrumb *_Nonnull breadcrumb);
+typedef PayUCRBreadcrumb *_Nullable (^PayUCRBeforeBreadcrumbCallback)(
+    PayUCRBreadcrumb *_Nonnull breadcrumb);
 
 /**
  * Block can be used to mutate event before its send.
  * To avoid sending the event altogether, return nil instead.
  */
-typedef PayuCrashReporterEvent *_Nullable (^PayCrashReporterBeforeSendEventCallback)(PayuCrashReporterEvent *_Nonnull event);
+typedef PayUCREvent *_Nullable (^PayCrashReporterBeforeSendEventCallback)(PayUCREvent *_Nonnull event);
 
 /**
  * A callback to be notified when the last program execution terminated with a crash.
  */
-typedef void (^PayCrashReporterOnCrashedLastRunCallback)(PayuCrashReporterEvent *_Nonnull event);
+typedef void (^PayCrashReporterOnCrashedLastRunCallback)(PayUCREvent *_Nonnull event);
 
 /**
  * Block can be used to determine if an event should be queued and stored
@@ -61,34 +61,25 @@ typedef void (^PayCrashReporterOnCrashedLastRunCallback)(PayuCrashReporterEvent 
  */
 typedef BOOL (^PayCrashReporterShouldQueueEvent)(
     NSHTTPURLResponse *_Nullable response, NSError *_Nullable error);
-/**
- * Loglevel
- */
-typedef NS_ENUM(NSInteger, PayUCrashReporterLogLevel) {
-    kPayUCrashReporterLogLevelNone = 1,
-    kPayCrashReporterLogLevelError,
-    kPayUCrashReporterLogLevelDebug,
-    kPayUCrashReporterLogLevelVerbose
-};
 
 /**
  * CrashReporter level
  */
-typedef NS_ENUM(NSUInteger, PayUCrashReporterLevel) {
+typedef NS_ENUM(NSUInteger, PayUCRLevel) {
     // Defaults to None which doesn't get serialized
-    kPayUCrashReporterLevelNone = 0,
+    kPayUCRLevelNone = 0,
     // Goes from Debug to Fatal so possible to: (level > Info) { .. }
-    kPayUCrashReporterLevelDebug = 1,
-    kPayUCrashReporterLevelInfo = 2,
-    kPayUCrashReporterLevelWarning = 3,
-    kPayUCrashReporterLevelError = 4,
-    kPayUCrashReporterLevelFatal = 5,
+    kPayUCRLevelDebug = 1,
+    kPayUCRLevelInfo = 2,
+    kPayUCRLevelWarning = 3,
+    kPayUCRLevelError = 4,
+    kPayUCRLevelFatal = 5,
 };
 
 /**
  * Static internal helper to convert enum to string
  */
-static NSString *_Nonnull const PayUCrashReporterLevelNames[] = {
+static NSString *_Nonnull const PayUCRLevelNames[] = {
     @"none",
     @"debug",
     @"info",
